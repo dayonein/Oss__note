@@ -1,0 +1,46 @@
+OSS 14강 브랜치 개요와 관리 C2023-12-02)
+깃 브랜치
+커밋 사이를 편하게 이동할 수 있는 포인터
+·
+브랜치 경합
+여러 개발자가 동시에 다양한 작업
+독립된 브랜치에서 작업 후 원래
+(하나의 프로젝트를 여러 갈래로 나눠 관리)
+버전과 합침
+※main Branch는 가장 마지막 커밋을 가리킴.
+*(HEAD→ Main) HEAD는 현 작업 브랜치 main을 가리킨다는 의미
+새로운 Branch 생성
+$ git branch bname 단순 생성 O HEAD 이동 X
+$ git switch-cbname 단순 생성 O HEAD 이동 O
+$ git checkout -bname 단순 생성 O HEAD 이동 ᄋ
+브랜치 확인
+$ git branch
+※(*→현작업 Branch)
+커밋 발생 브랜치 목록 보기
+$ git branch -v
+브랜치 별 마지막 커밋 ID& 메세지
+브랜치
+이동
+$ git switch [bname]
+$ git checkout Cbname]
+git switch
+·
+$ git checkout-
+HEAD를 지정 Branch로 이동
+HEAD를 이전 브랜치로 이동
+$ git checkout CHEADN, 커밋ID] 현 브랜치 마지막 이전 커밋으로 이동
+※cdetached HEAD)→ HEAD가 현 Branch 마지막 커밋X 그 이전을 가리키는 경우
+브랜치 삭제
+$ git branch E-d, --delete] [bname] 병합된 지정 bname 삭제
+$
+git branch [bname] 병합되지 않더라도 지정 bname 삭제
+브랜치 목록 보기
+$ git branch -- merged
+$ git branch --no-merged
+현작업 브랜치 기준 병합된 브랜치 목록 표시
+현작업 브랜치 기준 아직 병합x 브랜치 목록 표시
+$ git branch --merged bname 인자 bname 기준 병합 브랜치 목록 표시
+git branch --ho-merged bname 인자 bname 기준 아직 병합x 브랜치 목록 표시
+도움말 보기
+$ git branch -h
+
