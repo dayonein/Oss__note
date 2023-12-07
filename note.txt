@@ -1,0 +1,179 @@
+#OSS 10강 파일비교 diff (2022-12-02)
+HEAD / HEADS→ 하나 전 커밋
+HEADNN HEAD^^→ 두개 전 커밋 (HEAD~^/ HEAD^~ 혼용가능)
+깃3 영역 파일 비교 (오른쪽 영역이 기준/ 왼쪽이 대상 파일)
+작업 디렉토리
+(working Driectory)
+스테이징 영역
+(Staging Area)
+깃(지역 저장소) (git Local Repository)
+add
+Commit
+Is git diff
+$ git diff --staged HEAD
+←
+Ex) $ git diff HEAD ~2
+작업 영역 내용
+$ git diff HEAD
+*스테이징 영역 파일 보기
+git IS-files
+깃 저장소 내용
+A
+A,B,C,D
+→결과 내용
+A,+B,+C.
+(대상파일은 세줄이 추가)
+두 버전끼리의 파일비교
+$ git diff HEAD~2 HEAD (이전 파일 기준 2개전 대상파일)
+A
+(HEAD ~2)
+a
+→결과 a,+b
+B
+(HEAD~)
+a
+C
+(HEAD)
+a,b,c
+
+﻿
+OSS 11강 파일 삭제 rm과 복원 restore (2003-12-02)
+깃 3 영역에서 파일 삭제
+$rm 파일이름 작업 디렉토리에서 파일 삭제
+$ git rm 파일이름 작업디렉토리/스테이징 영역에서 삭제 (Tracked Untracked)
+$ git rm --cached 파일이름 스테이징 영역에서 삭제
+Ex) $ git commit -m 'Delete 파일이름'
+→파일이 '삭제된 상태를 커밋
+깃 3 영역에서의 파일복구
+$ git restore 파일이름 WD 파일을 SA의 내용(상태로 복구)
+※--Staged-S
+※--worktree-W
+2 $ git restore --Staged 파일이름 SA 파일을 LR의 상태로 복구
+3 $ git restore
+--
+- Source=HEAD--Staged--worktree 파일이름
+→ WD SA가 LR (현 커밋 상태)로 복구
+$ git restore --Source =HEAD E--work tree] 파일이름 wb 파일을 CR 상태로 복구 5 $ git restore --Source =HEAD 파일이름 WD 파일을 CR 상태로 복구
+-WD.
+14 4.5.34
+-SA·
+2.34
+LR⋅
+OSS 12강 [실습]파일 diff와 rm.restore con-2-02)
+명령 별칭 생성
+(2023-12-02)
+$
+git config --global alias. 별칭이름 '원 명령어
+→설정 이후 $ 별칭이름으로 사용가능
+-긴옵션-짧은옵션'
+Ex)
+$ git status-s
+$ git config --global alias.ss'Sstatus-s'
+$ git ss
+기존 명령어 별칭 생성 별칭 불러오기
+
+﻿
+OSS 13강 버전 태그와 활용
+버전(version)
+2-3 자리 숫자로 이루어짐 [(ex) 1.0/2.14]
+Semver (semantic versioning)
+major.minor.patch
+major 번호
+첫자리 O→ 초기 개발/ 첫자리 1→ 정식 버전
+minor 번호
+major 에서 기능 추가 아 변경사항 있을 때
+patch 번호
+버그 수정 등 미미한 변화
+태그(Tag).
+・일반태그 태그 이름만 포함
+(2023-12-02)
+・주석태그 태그 이름+정보 (태그 작성자 메일, 태그 시각, 태그 메세지) 포함 태그 버전 이름 중복
+$ git tag -a v1.00-m first version' 이메일. 날짜. 메세지
+$ git tag -a v 1.00 기본 설정 편집기로 메세지 편집
+$ git tag -a v1.1.0 CommitID 특정커밋에 태그를 붙임
+$ git tag v1.0.1 태그 버전 이름 중복 불가능 /-a, -m 사용 불가능
+태그 목록 보기
+$ git tag
+예전 태그부터 표시
+$ git log
+최신 커밋부터 표시
+태그 정보 보이기 (태그이름. 이메일. 시각·메세지)
+$ git Show v1.0.0
+태그 삭제
+$git tag -d v1.0.0
+이게
+먼맛?
+
+﻿
+OSS 14강 브랜치 개요와 관리 C2023-12-02)
+깃 브랜치
+커밋 사이를 편하게 이동할 수 있는 포인터
+·
+브랜치 경합
+여러 개발자가 동시에 다양한 작업
+독립된 브랜치에서 작업 후 원래
+(하나의 프로젝트를 여러 갈래로 나눠 관리)
+버전과 합침
+※main Branch는 가장 마지막 커밋을 가리킴.
+*(HEAD→ Main) HEAD는 현 작업 브랜치 main을 가리킨다는 의미
+새로운 Branch 생성
+$ git branch bname 단순 생성 O HEAD 이동 X
+$ git switch-cbname 단순 생성 O HEAD 이동 O
+$ git checkout -bname 단순 생성 O HEAD 이동 ᄋ
+브랜치 확인
+$ git branch
+※(*→현작업 Branch)
+커밋 발생 브랜치 목록 보기
+$ git branch -v
+브랜치 별 마지막 커밋 ID& 메세지
+브랜치
+이동
+$ git switch [bname]
+$ git checkout Cbname]
+git switch
+·
+$ git checkout-
+HEAD를 지정 Branch로 이동
+HEAD를 이전 브랜치로 이동
+$ git checkout CHEADN, 커밋ID] 현 브랜치 마지막 이전 커밋으로 이동
+※cdetached HEAD)→ HEAD가 현 Branch 마지막 커밋X 그 이전을 가리키는 경우
+브랜치 삭제
+$ git branch E-d, --delete] [bname] 병합된 지정 bname 삭제
+$
+git branch [bname] 병합되지 않더라도 지정 bname 삭제
+브랜치 목록 보기
+$ git branch -- merged
+$ git branch --no-merged
+현작업 브랜치 기준 병합된 브랜치 목록 표시
+현작업 브랜치 기준 아직 병합x 브랜치 목록 표시
+$ git branch --merged bname 인자 bname 기준 병합 브랜치 목록 표시
+git branch --ho-merged bname 인자 bname 기준 아직 병합x 브랜치 목록 표시
+도움말 보기
+$ git branch -h
+
+﻿
+ass 16강 원격 저장소 복제 (2003-12-02)
+원격저장소 지역 저장소에 복제 (clone)
+깃허브 원격 저장소 복제
+저장소 이름 git-clone/https 주소 복사
+PC 깃에서 원격저장소 복제
+$ git clone [주소]
+현 폴더에 바로 복제
+$ git clone [주소] [새폴더명]
+하부 폴더 [새-폴더] 이름으로 복제
+원격 저장소 별칭 관리
+$ git remote
+원격 저장소 정보 목록 표시
+$ git remote-v 저장소 정보 목록표시
+$ git remote add origin URL 원격 저장소 별칭 저장
+$ git remote Show Origin
+$ git remote rename Origin org
+$ git remote rm org
+자세한 정보
+이름수정
+삭제
+→ Visual Studio code 내용은 PDF로 보기
+OSS 17강 지역과 원격 저장소 연동 push pull C2023-12-03)
+개인 접근 토큰 생성→ PDF 보고 하기
+Pushy
+git Local Repository (PC) git server Repository (github)
