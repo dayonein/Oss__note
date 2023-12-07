@@ -1,0 +1,37 @@
+#OSS 11강 파일 삭제 rm과 복원 restore (2003-12-02)
+깃 3 영역에서 파일 삭제
+$rm 파일이름 작업 디렉토리에서 파일 삭제
+$ git rm 파일이름 작업디렉토리/스테이징 영역에서 삭제 (Tracked Untracked)
+$ git rm --cached 파일이름 스테이징 영역에서 삭제
+Ex) $ git commit -m 'Delete 파일이름'
+→파일이 '삭제된 상태를 커밋
+깃 3 영역에서의 파일복구
+$ git restore 파일이름 WD 파일을 SA의 내용(상태로 복구)
+※--Staged-S
+※--worktree-W
+2 $ git restore --Staged 파일이름 SA 파일을 LR의 상태로 복구
+3 $ git restore
+--
+- Source=HEAD--Staged--worktree 파일이름
+→ WD SA가 LR (현 커밋 상태)로 복구
+$ git restore --Source =HEAD E--work tree] 파일이름 wb 파일을 CR 상태로 복구 5 $ git restore --Source =HEAD 파일이름 WD 파일을 CR 상태로 복구
+-WD.
+14 4.5.34
+-SA·
+2.34
+LR⋅
+
+OSS 12강 [실습]파일 diff와 rm.restore con-2-02)
+명령 별칭 생성
+(2023-12-02)
+$
+git config --global alias. 별칭이름 '원 명령어
+→설정 이후 $ 별칭이름으로 사용가능
+-긴옵션-짧은옵션'
+Ex)
+$ git status-s
+$ git config --global alias.ss'Sstatus-s'
+$ git ss
+기존 명령어 별칭 생성 별칭 불러오기
+
+﻿
